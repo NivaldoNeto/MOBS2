@@ -1,11 +1,11 @@
 {{ $slot }}
 <form action={{ route('site.contato')}} method="post">
     @csrf
-    <input name="nome" placeholder="Nome" class="borda-preta">
+    <input name="name" placeholder="Nome" class="borda-preta">
     <br>
     <input name="telefone" placeholder="Telefone" class="borda-preta">
     <br>
-    <input name="e-mail" placeholder="E-mail" class="borda-preta">
+    <input name="email" placeholder="emmail" class="borda-preta">
     <br>
     <select name="motivo_contato" class="borda-preta">
         <option value="">Qual o motivo do contato?</option>
@@ -18,3 +18,9 @@
     <br>
     <button type="submit" class="borda-preta">ENVIAR</button>
 </form>
+
+<div style="position: absolute; top: 0px; left: 0px; width: 100%; background:red">
+    <pre>
+    {{  print_r($errors) }}
+    </pre>
+</div>
