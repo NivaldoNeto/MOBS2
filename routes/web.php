@@ -25,9 +25,11 @@ use App\Http\Controllers\TesteController;
     return view('Hello World');
 });*/
 
-Route::get('/', [PrincipalConttroller::class, 'principal'])->name('site.index');
+Route::get('/', [PrincipalConttroller::class, 'principal'])->name('site.index')->middleware('log.acesso');
 Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])->name('site.sobre-nos');
-Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
+Route::get('/contato', [ContatoController::class, 'contato'])
+    ->name('site.contato')
+    ->middleware(LogAcessoMiddleware::class);
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
