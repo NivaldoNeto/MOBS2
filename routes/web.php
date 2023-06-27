@@ -7,6 +7,10 @@ use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedoresController;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProdutoController;
 
 
 
@@ -27,17 +31,22 @@ use App\Http\Controllers\TesteController;
 
 Route::get('/', [PrincipalConttroller::class, 'principal'])->name('site.index')->middleware('log.acesso');
 Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])->name('site.sobre-nos');
-Route::get('/contato', [ContatoController::class, 'contato'])
-    ->name('site.contato')
-    ->middleware(LogAcessoMiddleware::class);
+Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato')->middleware('log.acesso');
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato');
-Route::get('/login', function(){return 'Login';})->name('site.login');
+Route::get('/login/{erro?}', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
 
 
 Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function(){
-    Route::get('/clientes', function(){return 'Clientes';})->name('app.clientes');
-    Route::get('/produtos', function(){return 'produtos';})->name('app.produtos');
-    Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('app.fornecedores');
+    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+    Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
+    Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
+    Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
+    Route::get('/fornecedor', [FornecedoresController::class, 'index'])->name('app.fornecedor');
+    Route::post('/fornecedor/listar', [FornecedoresController::class, 'listar'])->name('app.fornecedor.listar');
+    Route::get('/fornecedor/adicionar', [FornecedoresController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+
+
 });
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==**=*=*=*=*=*=*=*==*==*=*/
 
