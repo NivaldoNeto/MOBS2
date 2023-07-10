@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutoDetalheController;
 
 
 
@@ -52,6 +53,9 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
 
     //Produtos
     Route::resource('produto', ProdutoController::class);
+
+    Route::resource('produto-detalhe', ProdutoDetalheController::class);
+
 });
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==**=*=*=*=*=*=*=*==*==*=*/
 

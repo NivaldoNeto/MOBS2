@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Models\Unidade;
+use App\Models\Item;
+use App\Models\ProdutoDetalhe;
 use Illuminate\Http\Request;
 
 
@@ -14,9 +16,9 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::simplePaginate(10);
-                
-                return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
+        $produtos = Item::with('itemDetalhe')->simplePaginate(10);
+
+        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
     /**
@@ -69,7 +71,10 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        $unidades = Unidade::all();
+        //return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
+
     }
 
     /**
@@ -77,7 +82,8 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->update($request->all()); //instancia do objeto no estado anterior
+        return redirect()->route('produto.show', ['produto' => $produto->id ]);
     }
 
     /**
@@ -85,6 +91,8 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+        return redirect()->route('produto.index');
+
     }
 }
