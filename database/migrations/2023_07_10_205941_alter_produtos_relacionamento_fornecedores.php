@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('produtos', function (Blueprint $table)) {
-
+        Scheme::table('produtos', function(Blueprint $table){
             DB:: table('fornecedores')->insert([
                 'nome' => 'Forncedor Padrão SG',
                 'site' => 'fornecedorpadraosg.com.br',
@@ -22,7 +21,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('fornecedor_id')->after('id');
             $table->foreign('fornecedor_id')->references(id)->on('fornecedores');
-        }
+        });
     }
 
     /**
