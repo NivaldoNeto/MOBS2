@@ -54,6 +54,10 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
     //Produtos
     Route::resource('produto', ProdutoController::class);
 
+    Route::resource('cliente',ClienteController::class);
+    Route::resource('pedido',PedidoController::class);
+    Route::resource('pedido-produto',PedidoProdutoController::class);
+
     Route::resource('produto-detalhe', ProdutoDetalheController::class);
 
 });
