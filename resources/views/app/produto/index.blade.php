@@ -23,6 +23,7 @@
 						<tr>
 							<th>Nome</th> 
 							<th>Descrição</th>
+							<th>Fornecedor</th>
 							<th>Peso</th>
 							<th>Unidade ID</th>
 							<th>Comprimento</th>
@@ -38,7 +39,8 @@
 						@foreach ($produtos as $produto)
 							<tr>
 								<td>{{ $produto->nome }}</td>
-								<td>{{ $produto->descricao }}</td> 
+								<td>{{ $produto->descricao }}</td>
+								<td>{{ $produto->fornecedor->nome }}</td> 
 								<td>{{ $produto->peso }}</td>
 								<td>{{ $produto->unidade_id }}</td>
 								<th>{{ $produto->itemDetalhe->comprimento ?? '' }}</th>
