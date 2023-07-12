@@ -22,7 +22,6 @@
             @foreach($unidades as $unidade)
                 <option value=" {{ $unidade->id }}" {{ ($produto->unidade_id ??old('unidade_id')) == $unidade->id ? 'selected' : ''}}>{{ $unidade->descricao}}</option>
             @endforeach
-        <option value="1">Unidade</option> 
     </select>
     {{ $errors->has('unidade_id') ? $errors->first('unidade_id') : ''}}
 
