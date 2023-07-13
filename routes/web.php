@@ -10,6 +10,8 @@ use App\Http\Controllers\TesteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PedidoProdutoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProdutoDetalheController;
 
@@ -55,7 +57,7 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
     Route::resource('produto', ProdutoController::class);
 
     Route::resource('cliente',ClienteController::class);
-    Route::resource('pedido',PedidoController::class);
+    Route::resource('pedido', PedidoController::class);
     Route::resource('pedido-produto',PedidoProdutoController::class);
 
     Route::resource('produto-detalhe', ProdutoDetalheController::class);
