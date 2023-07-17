@@ -25,13 +25,15 @@
 						<tr>
 							<th>ID</th>
 							<th>Nome do Produto</th>
+							<th>Data de inclusão do produto</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach ($pedido->produtos as $produto)
 							<tr>
-								<td></td>
-								<td></td>
+								<td>{{ $produto->id }}</td>
+								<td>{{ $produto->nome}}</td>
+								<td>{{ $produto->pivot->created_at}}</td>
 							</tr>
 						@endforeach
 					</tbody>
